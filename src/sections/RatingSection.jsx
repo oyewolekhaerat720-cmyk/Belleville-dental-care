@@ -49,12 +49,9 @@ const RatingSection = () => {
 
   return (
     <section className="bg-gradient-to-b from-slate-50 via-white to-slate-50 py-20">
-
-      <div className="max-w-5xl mx-auto px-6">
-
+      <div className="max-w-5xl mx-auto px-6 sm:px-4">
         {/* HEADER */}
         <div className="text-center mb-12">
-
           <div className="inline-flex items-center justify-center w-16 h-16 mb-6 rounded-2xl bg-gradient-to-br from-slate-700 to-slate-800 shadow-lg">
             <FaTooth className="text-white text-2xl" />
           </div>
@@ -66,27 +63,19 @@ const RatingSection = () => {
           <p className="text-slate-600 max-w-xl mx-auto">
             Share your experience with our clinic.
           </p>
-
         </div>
 
-
-        <div className="grid lg:grid-cols-3 gap-8">
-
-
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* LEFT SIDE */}
           <div className="lg:col-span-2">
-
             <div className="bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden">
-
               {/* AVERAGE */}
               {average && (
-                <div className="bg-gradient-to-r from-slate-800 to-slate-700 px-8 py-6 flex justify-between items-center">
-
+                <div className="bg-gradient-to-r from-slate-800 to-slate-700 px-8 py-6 flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-0">
                   <div>
                     <p className="text-slate-300 text-sm uppercase tracking-wider mb-1">
                       Overall Rating
                     </p>
-
                     <div className="flex items-baseline gap-2">
                       <span className="text-4xl font-bold text-white">
                         {average}
@@ -100,31 +89,25 @@ const RatingSection = () => {
                       <FaStar
                         key={star}
                         className={`text-lg ${star <= Math.round(average)
-                            ? "text-yellow-400"
-                            : "text-slate-600"
-                          }`}
+                          ? "text-yellow-400"
+                          : "text-slate-600"
+                        }`}
                       />
                     ))}
                   </div>
-
                 </div>
               )}
 
-
               {/* FORM */}
-              <div className="p-8">
-
-                <form onSubmit={handleSubmit} className="space-y-8">
-
+              <div className="p-6 sm:p-8">
+                <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8">
                   {/* STAR RATING */}
                   <div className="text-center">
-
-                    <label className="block text-lg font-semibold text-slate-800 mb-4">
+                    <label className="block text-base sm:text-lg font-semibold text-slate-800 mb-4">
                       How was your visit?
                     </label>
 
-                    <div className="flex justify-center gap-3">
-
+                    <div className="flex justify-center gap-2 sm:gap-3">
                       {[1, 2, 3, 4, 5].map((value) => (
                         <button
                           key={value}
@@ -134,66 +117,52 @@ const RatingSection = () => {
                           onMouseLeave={() => setHover(0)}
                           className="p-2 rounded-full outline-none focus:outline-none focus:ring-0"
                         >
-
                           <FaStar
-                            className={`w-12 h-12 transition-all duration-200 ${value <= (hover || rating)
+                            className={`w-8 h-8 sm:w-12 sm:h-12 transition-all duration-200 ${
+                              value <= (hover || rating)
                                 ? "text-yellow-400 scale-110"
                                 : "text-slate-300"
-                              }`}
+                            }`}
                           />
-
                         </button>
                       ))}
-
                     </div>
-
                   </div>
-
 
                   {/* COMMENT */}
                   <div>
-
                     <textarea
                       rows={4}
                       maxLength={350}
                       value={comment}
                       onChange={(e) => setComment(e.target.value)}
                       placeholder="Tell us about your visit..."
-                      className="w-full rounded-2xl border-2 border-slate-200 px-5 py-4 text-slate-700 focus:border-slate-700 focus:ring-2 focus:ring-slate-300 outline-none resize-none bg-slate-50"
+                      className="w-full rounded-2xl border-2 border-slate-200 px-4 sm:px-5 py-3 sm:py-4 text-sm sm:text-base text-slate-700 focus:border-slate-700 focus:ring-2 focus:ring-slate-300 outline-none resize-none bg-slate-50"
                     />
-
                     <div className="text-right text-xs text-slate-400 mt-1">
                       {comment.length} / 350
                     </div>
-
                   </div>
-
 
                   {/* SUBMIT */}
                   <button
                     type="submit"
                     disabled={rating < 1}
-                    className={`w-full py-4 rounded-xl font-bold text-lg flex justify-center items-center gap-2 ${rating >= 1
+                    className={`w-full py-3 sm:py-4 rounded-xl font-bold text-base sm:text-lg flex justify-center items-center gap-2 ${
+                      rating >= 1
                         ? "bg-gradient-to-r from-slate-800 to-slate-700 text-white hover:brightness-110"
                         : "bg-slate-200 text-slate-400 cursor-not-allowed"
-                      }`}
+                    }`}
                   >
-
                     <FaCheckCircle />
                     Submit Review
-
                   </button>
-
                 </form>
-
 
                 {/* SUCCESS */}
                 {submitted && (
-
                   <div className="mt-6 bg-emerald-50 border border-emerald-200 rounded-2xl px-6 py-4 flex items-center gap-4">
-
                     <FaCheckCircle className="text-emerald-600 text-xl" />
-
                     <div>
                       <p className="font-bold text-emerald-800">
                         Thank you for your feedback!
@@ -202,82 +171,56 @@ const RatingSection = () => {
                         Your review helps us improve.
                       </p>
                     </div>
-
                   </div>
-
                 )}
-
               </div>
             </div>
           </div>
 
-
           {/* RIGHT SIDE REVIEWS */}
           <div>
-
             <div className="bg-white rounded-3xl shadow-xl border border-slate-100 p-6">
-
               <h3 className="text-xl font-bold text-slate-800 mb-6 flex items-center gap-2">
                 <FaQuoteLeft className="text-slate-600" />
                 Recent Reviews
               </h3>
 
-
               {reviews.length === 0 ? (
-
                 <div className="text-center py-12 text-slate-400">
                   <FaUserCircle className="w-16 h-16 mx-auto mb-4 opacity-30" />
                   <p>No reviews yet</p>
                 </div>
-
               ) : (
-
-                <div className="space-y-4 max-h-[500px] overflow-y-auto pr-2">
-
+                <div className="space-y-4 max-h-80 sm:max-h-[500px] overflow-y-auto pr-2">
                   {reviews.slice().reverse().slice(0, 8).map((review, i) => (
-
                     <div key={i} className="p-4 rounded-2xl bg-slate-50 border">
-
                       <div className="flex justify-between mb-2">
-
                         <div className="flex gap-1">
                           {Array.from({ length: 5 }).map((_, index) => (
                             <FaStar
                               key={index}
                               className={`w-4 h-4 ${index + 1 <= review.rating
-                                  ? "text-yellow-400"
-                                  : "text-slate-200"
-                                }`}
+                                ? "text-yellow-400"
+                                : "text-slate-200"
+                              }`}
                             />
                           ))}
                         </div>
-
                         <span className="text-xs text-slate-400">
                           {review.date}
                         </span>
-
                       </div>
-
                       <p className="text-sm text-slate-600">
                         {review.comment || "No comment provided"}
                       </p>
-
                     </div>
-
                   ))}
-
                 </div>
-
               )}
-
             </div>
-
           </div>
-
         </div>
-
       </div>
-
     </section>
   );
 };
